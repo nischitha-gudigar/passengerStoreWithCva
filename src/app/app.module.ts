@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { paymentReducer } from './payment-store/payment-details.reducer';
 import { passengerReducer } from './passenger-store/passenger-details.reducers';
+import { StarRaterComponent } from './passenger/star-rater/star-rater.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { passengerReducer } from './passenger-store/passenger-details.reducers';
     AppComponent,
     PassengerComponent,
     PassengerDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    StarRaterComponent
   ],
   providers: [SummaryService],
   bootstrap: [AppComponent]
