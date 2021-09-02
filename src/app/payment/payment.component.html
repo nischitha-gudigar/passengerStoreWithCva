@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row" style="margin:1%">
+    <div class="card summarycard">
+      <app-passenger-details></app-passenger-details>
+    </div>
+
+    <div class="card paycard">
+      <div class="card-header">
+        Add Payment Details
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="paymentForm">
+
+          <div class="form-group row mb-2">
+            <label class="col-md-3 col-form-label"
+               for="creditcard">Credit Card</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                 id="creditcard"
+                 type="text"
+                 formControlName="creditcard"
+                 placeholder="Enter Credit Card Number"
+                 [ngClass]="{'is-invalid': (paymentForm.get('creditcard').touched ||
+                                            paymentForm.get('creditcard').dirty) &&
+                                            !paymentForm.get('creditcard').valid }"
+                />
+              <span class="invalid-feedback">
+                <span *ngIf="paymentForm.get('creditcard').errors?.required">
+                  Please enter your Credit Card Number.
+                </span>
+              <span *ngIf="paymentForm.get('creditcard').errors?.pattern">
+                  The credit card number must be digits of 16 characters length.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-3 col-form-label"
+               for="expiry">Expiry Date</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                 id="expiry"
+                 type="text"
+                 formControlName="expiry"
+                 placeholder="Enter Expiry Date"
+                 [ngClass]="{'is-invalid': (paymentForm.get('expiry').touched ||
+                                            paymentForm.get('expiry').dirty) &&
+                                            !paymentForm.get('expiry').valid }"
+                />
+              <span class="invalid-feedback">
+                <span *ngIf="paymentForm.get('expiry').errors?.required">
+                  Please enter your expiry date.
+                </span>
+              <span *ngIf="paymentForm.get('expiry').errors?.pattern">
+                  Enter the date in mm/dd format.
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="form-group row mb-2">
+            <label class="col-md-3 col-form-label"
+               for="cva">CVA</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                 id="cva"
+                 type="text"
+                 formControlName="cva"
+                 placeholder="Enter CVA"
+                 [ngClass]="{'is-invalid': (paymentForm.get('cva').touched ||
+                                            paymentForm.get('cva').dirty) &&
+                                            !paymentForm.get('cva').valid }"
+                />
+              <span class="invalid-feedback">
+                <span *ngIf="paymentForm.get('cva').errors?.required">
+                  Please enter your CVA.
+                </span>
+              <span *ngIf="paymentForm.get('cva').errors?.maxlength">
+                 CVA should be of max 3 characters.
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="form-group row mb-2">
+            <div>
+              <button class="btn btn-primary mr-3"
+                type="submit"
+               (click)="savePayment(paymentForm.value);"
+                [title]="paymentForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+
+              >
+              Save
+              </button>&nbsp;
+              <button class="btn btn-warning mr-3"
+              type="button"
+              (click)="clearForm()"
+              >
+              Reset
+              </button>&nbsp;
+              <button class="btn btn-secondary mr-3"
+                type="button"
+                routerLink="/passenger"
+
+              >
+              Back
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

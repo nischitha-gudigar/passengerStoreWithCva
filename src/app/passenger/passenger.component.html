@@ -1,0 +1,154 @@
+<div class="container">
+  <div class="row" style="margin:1%">
+    <div class="card addcard">
+      <div class="card-header">
+        Add Passenger Details
+      </div>
+
+      <div class="card-body">
+        <form (ngSubmit)="saveForm(passengerForm.value);" [formGroup]="passengerForm">
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="firstNameId"
+              >First Name</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="firstNameId"
+                type="text"
+                formControlName="firstName"
+                placeholder="Enter First Name"
+                [ngClass]="{'is-invalid': (passengerForm.get('firstName').touched ||
+                                            passengerForm.get('firstName').dirty) &&
+                                            !passengerForm.get('firstName').valid }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="passengerForm.get('firstName').errors?.required">
+                  Please enter your first name.
+                </span>
+              <span *ngIf="passengerForm.get('firstName').errors?.maxlength">
+                  The first name must be less than 12 characters.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="lastNameId"
+              >Last Name</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="lastNameId"
+                type="text"
+                formControlName="lastName"
+                placeholder="Enter Last Name"
+                [ngClass]="{'is-invalid': (passengerForm.get('lastName').touched ||
+                                            passengerForm.get('lastName').dirty) &&
+                                            !passengerForm.get('lastName').valid }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="passengerForm.get('lastName').errors?.required">
+                  Please enter your last name.
+                </span>
+              <span *ngIf="passengerForm.get('lastName').errors?.maxlength">
+                  The last name must be less than 10 characters.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="emailId">Email</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="emailId"
+                type="email"
+                formControlName="email"
+                placeholder="Enter Email"
+                [ngClass]="{'is-invalid': (passengerForm.get('email').touched ||
+                                            passengerForm.get('email').dirty) &&
+                                            !passengerForm.get('email').valid }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="passengerForm.get('email').errors?.required">
+                  Please enter email.
+                </span>
+              <span *ngIf="passengerForm.get('email').errors?.email">
+                  Please enter valid email address.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="phone">Phone</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="phone"
+                type="text"
+                formControlName="phone"
+                placeholder="Enter Phone"
+                [ngClass]="{'is-invalid': (passengerForm.get('phone').touched ||
+                                            passengerForm.get('phone').dirty) &&
+                                            !passengerForm.get('phone').valid }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="passengerForm.get('phone').errors?.required">
+                    Please enter Phone number.
+                </span>
+              <span *ngIf="passengerForm.get('phone').errors?.pattern">
+                  Please enter Valid Phone number of digits between 8 to 12.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="address">Address</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="address"
+                type="text"
+                formControlName="address"
+                placeholder="Enter Address"
+                [ngClass]="{'is-invalid': (passengerForm.get('address').touched ||
+                                            passengerForm.get('address').dirty) &&
+                                            !passengerForm.get('address').valid }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="passengerForm.get('address').errors?.required">
+                  Please enter address
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <div class="offset-md-2 col-md-4">
+              <button
+                class="btn btn-success mr-3"
+                type="submit"
+                [title]="passengerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!passengerForm.valid"
+              >
+                Continue
+              </button>&nbsp;
+              <button class="btn btn-warning mr-3"
+              type="button"
+              style="width:80px"
+               (click)="clearData()">
+                Reset
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card summarycard">
+      <app-passenger-details [passengerSummary]="passengerForm.value"></app-passenger-details>
+    </div>
+  </div>
+</div>
